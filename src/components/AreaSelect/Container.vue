@@ -80,7 +80,7 @@ export default {
     },
     handleChecked ({ event, item, type }) {
       let checkedItem = this.checkedList[this.regionIndex]
-
+      // 切换了地区或者商圈之后，清空之前的选择
       Object.keys(this.checkedList).forEach(region => {
         Object.keys(checkedItem).forEach(key => {
           if (key !== type) {
@@ -112,7 +112,7 @@ export default {
       } else {
         checkedItem[type] = []
       }
-
+      // 切换了地区或者商圈之后，清空之前的选择
       Object.keys(this.checkedList).forEach(region => {
         Object.keys(checkedItem).forEach(key => {
           if (key !== type) {
