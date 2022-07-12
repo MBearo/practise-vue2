@@ -3,8 +3,8 @@
     <el-checkbox
       v-for="(item, index) in list"
       :key="item.value"
-      :value="checkedList[index] && ((checkedList[index].area.length === item.area.length) || (checkedList[index].ring.length === item.ring.length))"
-      :indeterminate="checkedList[index] && ((checkedList[index].area.length > 0 && checkedList[index].area.length < item.area.length) || (checkedList[index].ring.length > 0 && checkedList[index].ring.length < item.ring.length))"
+      :value="checkboxValue(item, index)"
+      :indeterminate="indeterminate(item, index)"
       @change="(e) => checkAll(e, item)"
     >
       {{ item.label }}
@@ -121,6 +121,16 @@ export default {
         })
       })
       this.checkedData = checkedItem
+    },
+    checkboxValue (item, index) {
+      return this.checkedList[index] &&
+        ((this.checkedList[index].area.length === item.area.length) ||
+          (this.checkedList[index].ring.length === item.ring.length))
+    },
+    indeterminate (item, index) {
+      return this.checkedList[index] &&
+        ((this.checkedList[index].area.length > 0 && this.checkedList[index].area.length < item.area.length) ||
+          (this.checkedList[index].ring.length > 0 && this.checkedList[index].ring.length < item.ring.length))
     }
   }
 }
