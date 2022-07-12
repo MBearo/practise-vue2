@@ -1,10 +1,9 @@
 <template>
   <el-checkbox-group :value="checkedList">
     <el-checkbox
-      v-for="(item, index) in list"
+      v-for="item in list"
       :key="item.value"
-      :label="item.value"
-      @change="e => handleChange(e, item, index)"
+      @change="(e)=>handleChecked(e,item)"
     >
       {{ item.label }}
     </el-checkbox>
@@ -19,23 +18,19 @@ export default {
 
   mixins: [],
   props: {
-    list: {
-      type: Array,
-      default: () => []
-    },
     checkedList: {
       type: Array,
       default: () => []
     },
-    isArea: {
-      type: Boolean,
-      default: true
+    list: {
+      type: Array,
+      default: () => []
     }
   },
 
   data () {
     return {
-      // checkedItems: []
+
     }
   },
 
@@ -56,9 +51,9 @@ export default {
   },
 
   methods: {
-    handleChange (e, item, index) {
-      console.log('e', e, item, index, this.isArea)
-      this.$emit('change', e, item, index, this.isArea)
+    handleChecked (event, item) {
+      console.log('first', event, item)
+      this.$emit('checked', { event, item })
     }
   }
 }

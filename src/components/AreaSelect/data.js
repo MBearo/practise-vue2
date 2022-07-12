@@ -1,4 +1,4 @@
-export const data = [{
+export const list = [{
   value: 1,
   label: '北京',
   area: [{

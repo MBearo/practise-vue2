@@ -1,68 +1,48 @@
 <template>
   <div>
-    <el-radio-group
-      :value="isArea"
-      @change="typeChange"
-    >
-      <el-radio :label="true">
-        区域
-      </el-radio>
-      <el-radio :label="false">
-        商圈
-      </el-radio>
-    </el-radio-group>
-    <Item
-      v-show="isArea"
-      :list="areaList"
-      :checked-list="areaCheckedList"
-      :is-area="true"
-      @change="checkedChange"
+    <el-button @click="() => chengeType('area')">
+      地区
+    </el-button>
+    <el-button @click="() => chengeType('ring')">
+      商圈
+    </el-button>
+    <AreaList
+      v-show="type==='area'"
+      :list="data.area"
+      :checked-list="checkedData.area"
+      @checked="(e)=>handleChecked(e,'area')"
     />
-    <Item
-      v-show="!isArea"
-      :list="ringList"
-      :checked-list="ringCheckedList"
-      :is-area="false"
-      @change="checkedChange"
+    <AreaList
+      v-show="type==='ring'"
+      :list="data.ring"
+      :checked-list="checkedData.ring"
+      @checked="(e)=>handleChecked(e,'ring')"
     />
   </div>
 </template>
 <script>
-import Item from './Item.vue'
-
+import AreaList from './AreaList.vue'
 export default {
 
   components: {
-    Item
+    AreaList
   },
 
   mixins: [],
   props: {
-    areaList: {
-      type: Array,
-      default: () => []
+    data: {
+      type: Object,
+      default: () => {}
     },
-    ringList: {
-      type: Array,
-      default: () => []
-    },
-    isArea: {
-      type: Boolean,
-      default: true
-    },
-    areaCheckedList: {
-      type: Array,
-      default: () => []
-    },
-    ringCheckedList: {
-      type: Array,
-      default: () => []
+    checkedData: {
+      type: Object,
+      default: () => {}
     }
   },
 
   data () {
     return {
-      checkedCities: []
+      type: 'area'
     }
   },
 
@@ -83,11 +63,11 @@ export default {
   },
 
   methods: {
-    typeChange (e) {
-      this.$emit('typeChange', !e)
+    chengeType (type) {
+      this.type = type
     },
-    checkedChange (e, item, index, isArea) {
-      this.$emit('checkedChange', e, item, index, isArea)
+    handleChecked ({ event, item }, type) {
+      this.$emit('checked', { event, item, type })
     }
   }
 }

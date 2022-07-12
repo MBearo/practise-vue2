@@ -1,47 +1,47 @@
 <template>
-    <div>
-        <AreaSelect/>
-    </div>
+  <div>
+    <AreaSelect />
+  </div>
 </template>
 <script>
-import AreaSelect from './components/AreaSelect/Container.vue'
+import AreaSelect from './components/AreaSelect/index'
 
 export default {
-    props: {
 
-    },
+  components: {
+    AreaSelect
+  },
 
-    components: {
-        AreaSelect
-    },
+  mixins: [],
+  props: {
 
-    mixins: [],
+  },
 
-    data() {
-        return {
-
-        }
-    },
-
-    computed: {
-
-    },
-
-    watch: {
-
-    },
-
-    created() {
-
-    },
-
-    mounted() {
-
-    },
-
-    methods: {
+  data () {
+    return {
 
     }
+  },
+
+  computed: {
+
+  },
+
+  watch: {
+
+  },
+
+  created () {
+
+  },
+
+  mounted () {
+
+  },
+
+  methods: {
+
+  }
 }
 </script>
 <style scoped>
