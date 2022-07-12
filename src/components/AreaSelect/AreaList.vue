@@ -3,6 +3,7 @@
     <el-checkbox
       v-for="item in list"
       :key="item.value"
+      :label="item.value"
       @change="(e)=>handleChecked(e,item)"
     >
       {{ item.label }}

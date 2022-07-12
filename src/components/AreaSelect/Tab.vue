@@ -65,6 +65,7 @@ export default {
   methods: {
     chengeType (type) {
       this.type = type
+      console.log('type', this.type)
     },
     handleChecked ({ event, item }, type) {
       this.$emit('checked', { event, item, type })
